@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, useParams, useNavigate } from 'react-router-dom';
 import VoteDetail from './components/VoteDetail';
-import Login from './pages/Login';
+import { Login } from './pages/Login';
 import AdminTools from './components/AdminTools';
 
 // 투표 화면과 로그인을 연결하는 '중간 관리자' 컴포넌트
