@@ -3,14 +3,18 @@ import { FaComment } from 'react-icons/fa';
 
 function Login({ onLogin }) {
 
-  useEffect(() => {
-    if (!window.Kakao.isInitialized()) {
-      // 👇 본인의 JavaScript 키를 여기에 넣으세요!
-      window.Kakao.init('e615e80c24e48050c8251dbddbfadfe9'); 
+
+ useEffect(() => {
+    if (window.Kakao && !window.Kakao.isInitialized()) {
+        window.Kakao.init('e615e80c24e48050c8251dbddbfadfe9'); 
     }
-  }, []);
+}, []);
 
   const handleKakaoLogin = () => {
+    if (!window.Kakao || !window.Kakao.isInitialized()) {
+      alert('카카오 로그인을 로딩 중입니다. 1초 뒤에 다시 시도해주세요!');
+      return;
+    }
     window.Kakao.Auth.login({
       success: function (authObj) {
         window.Kakao.API.request({
