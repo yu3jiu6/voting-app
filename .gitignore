@@ -1,4 +1,4 @@
-# Logs
+# Logs (로그 파일들)
 logs
 *.log
 npm-debug.log*
@@ -7,12 +7,17 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies (무거운 라이브러리 폴더 - 절대 올리면 안 됨)
 node_modules
+.pnp
+.pnp.js
+
+# Build output (빌드 결과물)
 dist
 dist-ssr
 *.local
 
-# Editor directories and files
+# Editor directories and files (에디터/운영체제 설정 파일)
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -23,5 +28,11 @@ dist-ssr
 *.sln
 *.sw?
 
-.env
+# Firebase specific (파이어베이스 관련 잡동사니 - 추가됨 ✅)
+.firebase/
+firebase-debug.log
 
+# Environment Variables (보안 파일 - 절대 올리면 안 됨 🚨)
+.env
+.env.local
+.env.*.local
