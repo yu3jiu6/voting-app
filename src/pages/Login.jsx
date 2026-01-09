@@ -13,12 +13,12 @@ const Login = ({ onLogin }) => {
     }
 
     // 2. 카카오 로그인 (v2 최신 문법)
-    window.Kakao.Auth.login({
+    window.Kakao.Auth.Login({
       success: function (authObj) {
         window.Kakao.API.request({
           url: '/v2/user/me',
           success: function (res) {
-            console.log('카카오 데이터:', res);
+            console.Log('카카오 데이터:', res);
 
             const nickname =
               res.kakao_account?.profile?.nickname ||
@@ -74,3 +74,4 @@ const Login = ({ onLogin }) => {
 };
 
 export default Login;
+
