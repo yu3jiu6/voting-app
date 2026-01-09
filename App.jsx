@@ -24,8 +24,7 @@ function App() {
   // ✅ 카카오 SDK 초기화 (앱 최초 로드 시 1회)
   useEffect(() => {
     if (window.Kakao && !window.Kakao.isInitialized()) {
-      window.Kakao.init(import.meta.env.VITE_KAKAO_JS_KEY);
-    }
+     window.Kakao.init(import.meta.env.VITE_KAKAO_APP_KEY || 'e615e80c24e48050c8251dbddbfadfe9');
   }, []);
 
   return (
