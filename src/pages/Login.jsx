@@ -1,12 +1,19 @@
-const handleKakaoLogin = () => {
-    // 1. 카카오 SDK가 초기화되었는지 안전하게 확인
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { RiKakaoTalkFill } from 'react-icons/ri'; // 아이콘 없으면 에러 날 수 있으니 일단 뺍니다. (필요하면 주석 해제)
+
+const Login = ({ onLogin }) => {
+  const navigate = useNavigate();
+
+  const handleKakaoLogin = () => {
+    // 1. 카카오 SDK가 로드되었는지 안전하게 확인
     if (!window.Kakao || !window.Kakao.isInitialized()) {
       console.error('Kakao SDK가 아직 로드되지 않았습니다.');
       return;
     }
 
-    // 2. 최신 버전(v2) 로그인 방식
-    window.Kakao.Auth.Login({
+    // 2. 카카오 로그인 (v2 최신 문법 - 소문자 login 중요!)
+    window.Kakao.Auth.login({
       success: function (authObj) {
         // 토큰 받기 성공! 이제 사용자 정보(닉네임 등)를 가져옵니다.
         window.Kakao.API.request({
@@ -31,8 +38,12 @@ const handleKakaoLogin = () => {
               photoURL: profileImage,
             };
             
-            // 로그인 처리 함수 실행
-            onLogin(kakaoUser);
+            // 로그인 처리 함수 실행 (App.jsx에서 전달받은 함수)
+            if (onLogin) {
+                onLogin(kakaoUser);
+            }
+            // 로그인 후 메인으로 이동
+            navigate('/');
           },
           fail: function (error) {
             console.error('사용자 정보 요청 실패:', error);
@@ -46,3 +57,23 @@ const handleKakaoLogin = () => {
       },
     });
   };
+
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-white p-8 rounded-lg shadow-lg text-center w-80">
+        <h1 className="text-2xl font-bold mb-6">로그인</h1>
+        <p className="text-gray-600 mb-6 text-sm">서비스를 이용하려면<br/>로그인이 필요합니다.</p>
+        
+        <button
+          onClick={handleKakaoLogin}
+          className="bg-[#FEE500] text-[#191919] px-6 py-3 rounded-md font-bold flex items-center justify-center gap-2 hover:bg-[#FDD835] transition w-full"
+        >
+          {/* 아이콘 대신 텍스트로 대체 (에러 방지) */}
+          카카오로 시작하기
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Login;
