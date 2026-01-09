@@ -71,11 +71,12 @@ function EventDetail({ user, userData }) {
     }
   };
 
-  // 2. 게스트 추가 (친구 데려오기) - ✅ 기획서 반영: 입력창 방식
+  // 2. 게스트 추가 (친구 데려오기)
   const handleAddGuest = async () => {
     if (!guestName.trim()) return toast.warn("게스트 이름을 입력해주세요.");
     
     const now = new Date();
+    if (now < event.voteStartTime.toDate()) return toast.error("아직 오픈 전입니다.");
     if (now > event.voteDeadline.toDate()) return toast.error("마감되었습니다.");
 
     try {
@@ -87,9 +88,9 @@ function EventDetail({ user, userData }) {
 
         const newAttRef = doc(collection(db, "Events", eventId, "Attendance"));
         transaction.set(newAttRef, {
-          userId: user.uid, // 초대한 사람(나)의 ID
+          userId: user.uid, 
           type: "GUEST",
-          name: guestName,  // 입력한 친구 이름
+          name: guestName,  
           timestamp: serverTimestamp()
         });
       });
