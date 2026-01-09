@@ -50,7 +50,7 @@ function Login({ onLogin }) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-[#FEE500]">
       <div className="bg-white p-10 rounded-xl shadow-lg text-center w-80">
-        <h1 className="text-2xl font-bold mb-8 text-[#191919]">스마트 배드민턴 🏸</h1>
+        <h1 className="text-2xl font-bold mb-8 text-[#191919]">YBC 배드민턴🏸</h1>
         <button 
           onClick={handleKakaoLogin}
           className="w-full bg-[#FEE500] hover:bg-[#ebd300] py-3.5 rounded-lg font-bold text-[#191919] flex items-center justify-center gap-2"
