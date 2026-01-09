@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { RiKakaoTalkFill } from 'react-icons/ri'; 
+// import { RiKakaoTalkFill } from 'react-icons/ri'; 
 
 const Login = ({ onLogin }) => {
   const navigate = useNavigate();
@@ -20,7 +20,6 @@ const Login = ({ onLogin }) => {
           success: function (res) {
             console.log('카카오 데이터:', res);
 
-            // 닉네임, 프로필 이미지 안전하게 꺼내기
             const nickname =
               res.kakao_account?.profile?.nickname ||
               res.properties?.nickname ||
@@ -37,7 +36,7 @@ const Login = ({ onLogin }) => {
               photoURL: profileImage,
             };
             
-            // 로그인 처리 함수 실행 (App.jsx에서 전달받은 함수)
+            // App.jsx에서 받은 로그인 함수 실행
             if (onLogin) {
                 onLogin(kakaoUser);
             }
@@ -67,8 +66,6 @@ const Login = ({ onLogin }) => {
           onClick={handleKakaoLogin}
           className="bg-[#FEE500] text-[#191919] px-6 py-3 rounded-md font-bold flex items-center justify-center gap-2 hover:bg-[#FDD835] transition w-full"
         >
-          {/* 아이콘 표시 */}
-          <RiKakaoTalkFill size={24} />
           카카오로 시작하기
         </button>
       </div>
