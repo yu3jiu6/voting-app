@@ -54,6 +54,9 @@ function EventList() {
               <p className="text-xs">
                 마감: {dayjs(event.voteDeadline?.toDate()).format('MM/DD HH:mm')}
               </p>
+              <p className="text-xs mt-1">참가비: {event.fee}원</p>
+              <p className="text-xs">회원 {event.memberLimit}명 / 게스트 {event.guestLimit}명</p>
+
 
               <span
                 className={`inline-block mt-2 px-2 py-1 text-xs rounded ${

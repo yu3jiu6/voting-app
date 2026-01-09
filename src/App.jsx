@@ -48,7 +48,7 @@ function App() {
   }, []);
 
   const handleLogin = async () => {
-    const provider = new GoogleAuthProvider();
+    const provider = new GoogleAuthProvider(); // google이 아닌 카카오 id로 사람구별
     await signInWithPopup(auth, provider);
   };
 
@@ -58,17 +58,17 @@ function App() {
   if (!user) {
     return (
       <div className="flex flex-col items-center justify-center h-screen bg-yellow-400">
-        <h1 className="text-3xl font-bold mb-8">🏀 농구 동호회 투표</h1>
+        <h1 className="text-3xl font-bold mb-8">🏸양배추 투표</h1>
         <button
           onClick={handleLogin}
           className="bg-white p-4 rounded-lg shadow-lg font-bold"
         >
-          구글 계정으로 시작하기
+          카카오 계정으로 시작하기
         </button>
       </div>
     );
   }
-
+//카카오로 로그인 되게 할 수 있는지
   return (
     <BrowserRouter>
       <div className="max-w-md mx-auto bg-gray-50 min-h-screen border-x">
@@ -83,7 +83,7 @@ function App() {
               >
                 ⚙️ 관리자
               </Link>
-            )}
+            )} 
             <button
               onClick={() => signOut(auth)}
               className="text-xs text-gray-500"
