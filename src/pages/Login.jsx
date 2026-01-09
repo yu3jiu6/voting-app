@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { RiKakaoTalkFill } from 'react-icons/ri'; // 아이콘 없으면 에러 날 수 있으니 일단 뺍니다. (필요하면 주석 해제)
+import { RiKakaoTalkFill } from 'react-icons/ri'; 
 
 const Login = ({ onLogin }) => {
   const navigate = useNavigate();
@@ -12,10 +12,9 @@ const Login = ({ onLogin }) => {
       return;
     }
 
-    // 2. 카카오 로그인 (v2 최신 문법 - 소문자 login 중요!)
+    // 2. 카카오 로그인 (v2 최신 문법)
     window.Kakao.Auth.login({
       success: function (authObj) {
-        // 토큰 받기 성공! 이제 사용자 정보(닉네임 등)를 가져옵니다.
         window.Kakao.API.request({
           url: '/v2/user/me',
           success: function (res) {
@@ -68,7 +67,8 @@ const Login = ({ onLogin }) => {
           onClick={handleKakaoLogin}
           className="bg-[#FEE500] text-[#191919] px-6 py-3 rounded-md font-bold flex items-center justify-center gap-2 hover:bg-[#FDD835] transition w-full"
         >
-          {/* 아이콘 대신 텍스트로 대체 (에러 방지) */}
+          {/* 아이콘 표시 */}
+          <RiKakaoTalkFill size={24} />
           카카오로 시작하기
         </button>
       </div>
